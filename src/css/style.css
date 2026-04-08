@@ -2,7 +2,7 @@
   --font-body: Arial, Helvetica, sans-serif;
   --font-headline: Haettenschweiler, "Arial Narrow Bold", sans-serif;
   /* colors */
-  --primary-color: #f0a868;
+  --primary-color: #be231e;
   --secondary-color: #525b0f;
   --tertiary-color: #8a470c;
   --light-grey: #d0d0d0;
@@ -30,6 +30,7 @@ img {
   max-width: 100%;
 }
 
+
 header {
   display: flex;
   justify-content: space-between;
@@ -53,6 +54,7 @@ p {
 .logo img {
   width: 60px;
   height: 60px;
+  padding-right: 2px;
 }
 
 .logo a {
@@ -151,25 +153,34 @@ button {
   text-align: center;
 }
 
-.products {
+.fighters {
   margin-top: 2rem;
   padding: 1rem;
-}
+  text-align: center;
 
-.product-list {
+  h2 {
+    padding-bottom: 5px;
+    text-decoration: underline;
+  }
+}
+svg {
+  width: 50px;
+  height: 50px;;
+}
+.fighter-list, .events-list {
   display: flex;
   flex-flow: row wrap;
   list-style-type: none;
   justify-content: center;
 }
 
-.product-list a {
+.fighter-list a {
   text-decoration: none;
   color: var(--dark-grey);
 }
 
 /* Styles for product lists */
-.product-card {
+.fighter-card, .fight-card {
   flex: 1 1 45%;
   margin: 0.25em;
   padding: 0.5em;
@@ -177,17 +188,15 @@ button {
   max-width: 250px;
 }
 
-.product-card h2,
-.product-card h3,
-.product-card p {
+.fighter-card h2,
+.fighter-card h3,
+.fighter-card p {
   margin: 0.5em 0;
 }
 
-.card__brand {
-  font-size: var(--small-font);
-}
 
-.card__name {
+
+.fighter__name {
   font-size: 1em;
 }
 

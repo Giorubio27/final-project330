@@ -21,3 +21,46 @@ export function setClick(selector, callback) {
   });
   qs(selector).addEventListener("click", callback);
 }
+export async function loadTemplate(templatePath) {
+  const response = await fetch(templatePath);
+  const template = await response.text();
+  return template;
+}
+export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
+  const htmlStrings = list.map(templateFn);
+
+  if (clear) {
+    parentElement.innerHTML = "";
+
+  }
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
+}
+
+export function renderWithTemplate(template, parentElement, data, callback) {
+  parentElement.innerHtml = template;
+  if (callback) {
+    callback(data);
+  }
+
+}
+
+export function getParam(param) {
+  const queryString = window.location.search;
+  const urlParams = new urlSearchParams(queryString);
+  const product = urlParams.get(param);
+  return product;
+}
+
+
+export async function loadHeaderFooter(headerPath = "../partials/header.html", footerPath = "../partials/footer.html") {
+  const headerTemplate = await loadTemplate(headerPath);
+  const footerTemplate = await loadTemplate(footerPath);
+
+  const headerElement = document.querySelector("header");
+  const footerElement = document.querySelector("footer");
+
+
+  renderWithTemplate(headerTemplate, headerElement);
+  renderWithTemplate(footerTemplate, footerElement);
+
+}
