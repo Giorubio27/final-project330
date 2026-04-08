@@ -174,7 +174,7 @@ svg {
   justify-content: center;
 }
 
-.fighter-list a {
+.fighter-list a, .events-list a {
   text-decoration: none;
   color: var(--dark-grey);
 }
