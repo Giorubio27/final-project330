@@ -46,9 +46,8 @@ export function renderWithTemplate(template, parentElement, data, callback) {
 
 export function getParam(param) {
   const queryString = window.location.search;
-  const urlParams = new urlSearchParams(queryString);
-  const product = urlParams.get(param);
-  return product;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.get(param);
 }
 
 

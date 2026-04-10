@@ -19,11 +19,12 @@ export async function getUfcRankings() {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = response.json()
-        console.log("data fetched successfully")
+        console.log("ranking data fetched successfully")
+        console.log(data)
         return data;
         
     } catch (error) {
-        console.error("The data was not retrieved successfully",error);
+        console.error("The ranking data was not retrieved successfully",error);
     }
     
 }
