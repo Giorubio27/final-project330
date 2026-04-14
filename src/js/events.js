@@ -15,7 +15,7 @@ function eventTemplate(event) {
     <li class="event-card">
         <div class="event-image">
             <img src="${imageUrl}" alt="${event.ShortName}" onerror="this.src='/images/ufc-fighter-placeholder.webp'">
-        <div class"event-date">${eventDate}</div>
+        <div class="event-date">${eventDate}</div>
         <h2 class="event-name">${event.Name}</h2>
         <p class="event-location">📍To be anounced </P>
     </li>`;
