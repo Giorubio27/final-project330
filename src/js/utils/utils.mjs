@@ -37,7 +37,7 @@ export function renderListWithTemplate(templateFn, parentElement, list, position
 }
 
 export function renderWithTemplate(template, parentElement, data, callback) {
-  parentElement.innerHtml = template;
+  parentElement.innerHTML = template;
   if (callback) {
     callback(data);
   }
