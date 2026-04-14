@@ -7,7 +7,7 @@ function eventTemplate(event) {
         weekday: "long", month: "long", day: "numeric"
     });
 
-    const name = event.ShortName
+    const name = event.ShortName;
     const imageSlug = name.toLowerCase().replace(/\s+/g, "-");
     const imageUrl = `https://fightcompanion123.blob.core.windows.net/events/${imageSlug}.jpg`;
 
