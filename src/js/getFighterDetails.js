@@ -21,12 +21,25 @@ async function initFighterPage() {
 function renderFighter(fighter) {
     qs("#fighterName").textContent = `${fighter.FirstName} ${fighter.LastName}`;
     qs("#weightClass").textContent = fighter.WeightClass;
+    qs("#reach").textContent = fighter.Reach;
+    qs("#height").textContent = fighter.Height;
+    qs("#knockouts").textContent = fighter.TechnicalKnockouts;
+
+
     qs("#wins").textContent = fighter.Wins;
     qs("#losses").textContent = fighter.Losses;
     qs("#nickname").textContent = fighter.Nickname || "N/A";
 
+
     const formattedName = `${fighter.FirstName}-${fighter.LastName}`.toLowerCase();
-    qs("#fighterImage").src = `https://fightcompanion123.blob.core.windows.net/fighters/${formattedName}.jpg`;
+
+    const imgElement = qs("#fighterImage");
+    imgElement.src = `https://fightcompanion123.blob.core.windows.net/fighters/${formattedName}.jpg`;
+
+    
+    
+
+  
 }
 
 initFighterPage();

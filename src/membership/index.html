@@ -9,18 +9,11 @@
     <title>Fight Companion | Join Us</title>
 
     <link rel="stylesheet" href="css/style.css" />
+    <script src="../js/membership.js" type="module"></script>
   </head>
 
   <body>
     <header class="divider" id="header">
-      <div class="logo">
-        <img src="images/noun_Tent_2517.svg" alt="tent image for logo" />
-
-        <a href="index.html">
-          Sleep
-          <span class="highlight">Outside</span>
-        </a>
-      </div>
 
       <div class="memberships">
         <a href="/membership/index.html">
@@ -34,8 +27,42 @@
     </header>
 
     <main class="divider">
-      <section class="products">
-        <h2>Review & Join our team</h2>
+      <section class="membership-signup">
+        <h2>Enter the Octagon</h2>
+        <p>Get the exclusives on all that happens in the fight world</p>
+
+        <form id="membership-form">
+          <fieldset>
+            <legend>Customer Name</legend>
+            <input type="text" name="fname" placeholder="First Name" required>
+            <input type="text" name="lname" placeholder="Last Name" required>
+          </fieldset>
+          <fieldset>
+            <legend>
+              Address 
+            </legend>
+            <input type="text" name="street" placeholder="Street Address" required>
+            <input type="text" name="city" placeholder="City" required>
+            <input type="text" name="state" placeholder="State" required>
+            <input type="text" id="zip" name="zip" placeholder="Zipcode" required>
+          </fieldset>
+        
+          <fieldset>
+            <legend>Payment</legend>
+            <input type="text" name="cardNumber" placeholder="Card Number" required>
+            <input type="text" name="expiration" placeholder="Exp Date" required>
+            <input type="text" name="code" placeholder="Security Code" required>
+        
+          </fieldset>
+        
+          <section class="order-summary">
+            <p>Subtotal: <span id="subtotal"></span></p>
+            <p>Tax: <span id="tax"></span></p>
+            <p><strong>Total: <span id="orderTotal"></span></strong></p>
+        
+            <button type="submit" id="checkout-btn">Checkout</button>
+          </section>
+        </form>
       </section>
     </main>
 
