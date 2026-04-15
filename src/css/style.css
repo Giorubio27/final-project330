@@ -35,10 +35,14 @@ header {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  
+
 }
 
 .nav {
+  display: none;
+}
+
+.hidden-checkbox {
   display: none;
 }
 
@@ -76,6 +80,7 @@ p {
 .hero {
   position: relative;
 }
+
 .hero img {
   width: 100%;
 }
@@ -106,7 +111,7 @@ p {
   margin-top: -1.3em;
 }
 
-.logo--square > div {
+.logo--square>div {
   margin-top: -1.7em;
 }
 
@@ -177,24 +182,30 @@ button {
     text-decoration: underline;
   }
 }
+
 svg {
   width: 50px;
-  height: 50px;;
+  height: 50px;
+  ;
 }
-.fighter-list, .events-list {
+
+.fighter-list,
+.events-list {
   display: flex;
   flex-flow: row wrap;
   list-style-type: none;
   justify-content: center;
 }
 
-.fighter-list a, .events-list a {
+.fighter-list a,
+.events-list a {
   text-decoration: none;
   color: var(--dark-grey);
 }
 
 /* Styles for product lists */
-.fighter-card, .fight-card {
+.fighter-card,
+.fight-card {
   flex: 1 1 45%;
   margin: 0.25em;
   padding: 0.5em;
@@ -274,6 +285,7 @@ svg {
   border-radius: 8px;
   border-top: 5px solid #d20a0a;
 }
+
 .fighter-stats {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -281,6 +293,7 @@ svg {
   text-transform: uppercase;
   font-weight: bold;
 }
+
 #fighterImage {
   width: 100%;
   max-width: 400px;
@@ -288,21 +301,61 @@ svg {
   box-shadow: 0 4px 15px rgba(0, 0, 0, .5);
 }
 
-@media screen and (min-width: 500px) {
+@media (max-width: 767px) {
+  .membership-link {
+    pointer-events: none;
+    cursor: pointer;
+  }
+
+  .nav {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 100;
+  }
+
+  #menu-toggle:checked ~ .nav {
+    display: block;
+  }
+    /* Mobile view: Show the icon */
+    .hamburger-icon {
+      display: block;
+      cursor: pointer;
+      padding: 10px;
+    }
+  
+    /* Tablet/Desktop view: Hide the icon */
+    
+      
+  .nav-links ul {
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 768px) {
   body {
     max-width: 1080px;
     margin: auto;
   }
+    
 
   header {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr;
 
   }
 
+  .membership-link {
+    pointer-events: auto;
+  }
+
   .nav {
-    display: contents;
+    display: block !important;
+    position: static;
   }
 
   .nav-links ul {
@@ -310,7 +363,7 @@ svg {
     justify-content: space-around;
     align-items: end;
     margin: 1rem;
-   
+
   }
 
   .mission {
