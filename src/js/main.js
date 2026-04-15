@@ -36,7 +36,6 @@ async function searchFighter(inputName) {
     if (fighter) {
         const photoUrl = generateFighterUrl(`${fighter.FirstName}${fighter.LastName}`)
 
-        DisplayFighterCard(fighter, photoUrl)
     } else {
         console.log("Fighter is not in our records")
     }

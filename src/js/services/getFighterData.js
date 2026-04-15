@@ -12,9 +12,9 @@ export async function getUfcFighterData() {
     try {
         const response = await fetch("https://ufc-fighters.p.rapidapi.com/fighters/champions", options)
         if (!response.ok) {
-            throw new error(`The fighter data was fetched successfully`)
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const data = response.json();
+        const data = await response.json();
         console.log("Fighter data logged successfully")
         console.log(data)
         return data;

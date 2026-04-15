@@ -11,7 +11,8 @@ export default defineConfig({
         main: resolve(__dirname, "src/index.html"),
         events: resolve(__dirname, "src/events/index.html"),
         fighters: resolve(__dirname, "src/fighters/index.html"),
-        membership: resolve( __dirname, "src/membership/index.html"),
+        fighter: resolve(__dirname, "src/fighter_pages/index.html"),
+        membership: resolve(__dirname, "src/membership/index.html"),
         merchandise: resolve(__dirname, "src/merchandise/index.html"),
         
       },

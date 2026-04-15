@@ -27,7 +27,7 @@ export async function getUfcSchedule() {
         const ufcUrl = `${BASE_URL}/schedule/UFC/2026?key=${API_KEY}`;
         const response = await fetch(ufcUrl);
         if (!response.ok) {
-            throw new error("Failed to get the schedule")
+            throw new Error("Failed to get the schedule");
         }
         const data = await response.json();
         console.log("You have successfully gathered the events data")
