@@ -32,9 +32,20 @@ img {
 
 
 header {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  
+}
+
+.nav {
+  display: none;
+}
+
+
+.logo-glove {
+  display: grid;
+  grid-template-columns: 1fr auto;
 }
 
 p {
@@ -281,6 +292,25 @@ svg {
   body {
     max-width: 1080px;
     margin: auto;
+  }
+
+  header {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+
+  }
+
+  .nav {
+    display: contents;
+  }
+
+  .nav-links ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: end;
+    margin: 1rem;
+   
   }
 
   .mission {
