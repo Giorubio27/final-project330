@@ -1,4 +1,4 @@
-import { getUfcSchedule } from "./services/sportsDataService";
+import { getUfcSchedule } from "./services/sportsDataService.js";
 import { loadHeaderFooter, renderListWithTemplate, qs } from "./utils/utils.mjs";
 
 function eventTemplate(event) {

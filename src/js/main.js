@@ -1,8 +1,8 @@
-import { loadHeaderFooter, qs } from "./utils/utils.mjs";
-import { getUfcRankings } from "./services/getRankingData";
-import { getUfcFighterData } from "./services/getFighterData";
-import { getAllFighters } from "./services/sportsDataService";
-import { setClick } from "./utils/utils.mjs";
+import { loadHeaderFooter, qs, setClick } from "./utils/utils.mjs";
+import { getUfcRankings } from "./services/getRankingData.js";
+import { getUfcFighterData } from "./services/getFighterData.js";
+import { getAllFighters } from "./services/sportsDataService.js";
+
 
 
 
