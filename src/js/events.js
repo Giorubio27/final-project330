@@ -7,21 +7,28 @@ function eventTemplate(event) {
         weekday: "long", month: "long", day: "numeric"
     });
 
-    const name = event.ShortName;
-    const imageSlug = name.toLowerCase().replace(/\s+/g, "-");
+    let imageSlug;
+
+    if (event.ShortName === "UFC Fight Night") {
+
+        const detailedName = event.Name.split(":")[1] || event.Name;
+        imageSlug = detailedName.toLowerCase().trim().replace(/\s+/g, "-").replace(/vs\./g, "vs");
+
+    } else {
+        imageSlug = event.ShortName.toLowerCase().replace(/\s+/g, "-");
+    }
     const imageUrl = `https://fightcompanion123.blob.core.windows.net/events/${imageSlug}.jpg`;
 
     return `
     <li class="event-card">
-        <div class="event-image">
-            <img src="${imageUrl}" alt="${event.ShortName}" onerror="this.src='/images/ufc-fighter-placeholder.webp'">
-        <div class="event-date">${eventDate}</div>
-        <h2 class="event-name">${event.Name}</h2>
-        <p class="event-location">📍To be anounced </P>
+        <h3 class="event-name">${event.Name}</h3>
+        <p class="event-date">${eventDate}</p>
+        <img src="${imageUrl}" alt="${event.ShortName}" onerror="this.src='/images/ufc-fighter-placeholder.webp'">
     </li>`;
+};
 
 
-}
+
 
 async function initEvents() {
     await loadHeaderFooter();

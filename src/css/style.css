@@ -245,7 +245,7 @@ svg {
 h2 {
   padding-bottom: 0.5em;
   text-decoration: underline;
-  
+
 }
 
 .champ-card, .event-card {
@@ -264,6 +264,12 @@ h2 {
     transform: scale(1.05);
     transition: all 0.3s ease;
   }
+}
+.events-card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2em;
+  list-style: none;
 }
 
 .product-detail {
