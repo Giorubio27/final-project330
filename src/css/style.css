@@ -236,14 +236,19 @@ svg {
 }
 
 /* End product list card */
-#champions-list {
+#champions-list, .events-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2em;
   list-style: none;
 }
+h2 {
+  padding-bottom: 0.5em;
+  text-decoration: underline;
+  
+}
 
-.champ-card {
+.champ-card, .event-card {
   border: 1px solid var(--light-grey);
   padding: 1em;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);

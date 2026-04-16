@@ -2,11 +2,13 @@ import { loadHeaderFooter, qs, setClick, getLocalStorage, renderListWithTemplate
 import { getUfcRankings } from "./services/getRankingData.js";
 import { getUfcFighterData } from "./services/getFighterData.js";
 import { getAllFighters } from "./services/sportsDataService.js";
-
+import { getUfcSchedule } from "./services/sportsDataService.js";
 
 
 
 loadHeaderFooter();
+
+
 
 async function initChampions() {
     const data = await getUfcRankings();
@@ -16,10 +18,30 @@ async function initChampions() {
         const bestFigthers = data.rankings[0].ranks.slice(0, 5);
         console.log("best fighters", bestFigthers);
         renderListWithTemplate(championTemplate, listElement, bestFigthers);
-        
+
     }
 
 }
+
+async function initUpcomingEvents() {
+    const events = await getUfcSchedule();
+    const listElement = qs(".events-list");
+
+    if (events && Array.isArray(events)) {
+        const today = new Date();
+
+        const upcoming = events
+            .filter(event => new Date(event.Day) >= today)
+            .sort((a, b) => new Date(a.Day) - new Date(b.Day))
+            .slice(0, 5);
+            
+            
+             
+
+        renderListWithTemplate(eventTemplate, listElement, upcoming);
+    }
+};
+
 
 function championTemplate(champion) {
     const name = champion.name;
@@ -36,6 +58,32 @@ function championTemplate(champion) {
         <p class="champ-rank">Rank: ${champion.rank}</p>
     </li>`;
 }
+
+function eventTemplate(event) {
+    const eventDate = new Date(event.Day).toLocaleDateString("en-US", {
+        weekday: "short", month: "short", day: "numeric"
+    });
+    
+    let imageSlug;
+
+    if (event.ShortName === "UFC Fight Night") {
+
+        const detailedName = event.Name.split(":")[1] || event.Name;
+        imageSlug = detailedName.toLowerCase().trim().replace(/\s+/g, "-").replace(/vs\./g, "vs");
+
+    } else {
+        imageSlug = event.ShortName.toLowerCase().replace(/\s+/g, "-");
+    }
+    const imageUrl = `https://fightcompanion123.blob.core.windows.net/events/${imageSlug}.jpg`;
+
+    return `
+    <li class="event-card">
+        <h3 class="event-name">${event.Name}</h3>
+        <p class="event-date">${eventDate}</p>
+        <img src="${imageUrl}" alt="${event.ShortName}" onerror="this.src='/images/ufc-fighter-placeholder.webp'">
+    </li>`;
+     };
+
 
 
 async function initFighterData() {
@@ -91,6 +139,7 @@ setClick("#searchButton", handleSearch)
 
 
 initChampions();
+initUpcomingEvents();
 initFighterData();
 initFighterInfo();
 
