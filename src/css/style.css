@@ -83,6 +83,8 @@ p {
 
 .hero img {
   width: 100%;
+  aspect-ratio: 16 / 9;
+
 }
 
 .hero .logo {
@@ -219,6 +221,14 @@ svg {
   margin: 0.5em 0;
 }
 
+.fighter-card img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  display: block;
+  object-fit: cover;
+  border-radius: 4px;
+  background-color: #2a2a2a;
+}
 
 
 .fighter__name {
@@ -226,7 +236,25 @@ svg {
 }
 
 /* End product list card */
+#champions-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2em;
+  list-style: none;
+}
 
+.champ-card {
+  border: 1px solid var(--light-grey);
+  padding: 1em;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  & img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 4px;
+    background-color: #2a2a2a;
+  }
+}
 .product-detail {
   padding: 1em;
   max-width: 500px;
@@ -317,22 +345,52 @@ svg {
     z-index: 100;
   }
 
-  #menu-toggle:checked ~ .nav {
+  #menu-toggle:checked~.nav {
     display: block;
   }
-    /* Mobile view: Show the icon */
-    .hamburger-icon {
-      display: block;
-      cursor: pointer;
-      padding: 10px;
-    }
-  
-    /* Tablet/Desktop view: Hide the icon */
-    
-      
+
+  /* Mobile view: Show the icon */
+  .hamburger-icon {
+    display: block;
+    cursor: pointer;
+    padding: 10px;
+  }
+
+  /* Tablet/Desktop view: Hide the icon */
+
+
   .nav-links ul {
     flex-direction: column;
   }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+.fighter-card {
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
+  /* Start hidden for animation */
+}
+
+.fighter-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.fighter-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 10px 20px rgba(210, 10, 10, 0.3);
 }
 
 @media screen and (min-width: 768px) {
@@ -340,7 +398,7 @@ svg {
     max-width: 1080px;
     margin: auto;
   }
-    
+
 
   header {
     display: grid;

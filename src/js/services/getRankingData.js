@@ -13,7 +13,7 @@ export async function getUfcRankings() {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const data = response.json()
+        const data = await response.json()
         console.log("ranking data fetched successfully")
         console.log(data)
         return data;

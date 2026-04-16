@@ -1,4 +1,4 @@
-import { loadHeaderFooter, qs, setClick } from "./utils/utils.mjs";
+import { loadHeaderFooter, qs, setClick, getLocalStorage, renderListWithTemplate } from "./utils/utils.mjs";
 import { getUfcRankings } from "./services/getRankingData.js";
 import { getUfcFighterData } from "./services/getFighterData.js";
 import { getAllFighters } from "./services/sportsDataService.js";
@@ -8,10 +8,36 @@ import { getAllFighters } from "./services/sportsDataService.js";
 
 loadHeaderFooter();
 
-async function initRankings() {
+async function initChampions() {
     const data = await getUfcRankings();
+    const listElement = qs("#champions-list");
+
+    if (data && data.rankings) {
+        const bestFigthers = data.rankings[0].ranks.slice(0, 5);
+        console.log("best fighters", bestFigthers);
+        renderListWithTemplate(championTemplate, listElement, bestFigthers);
+        
+    }
 
 }
+
+function championTemplate(champion) {
+    const name = champion.name;
+    const rank = champion.rank;
+    const imageSlug = name.toLowerCase().replace(/\s+/g, "-");
+    const imageUrl = `https://fightcompanion123.blob.core.windows.net/fighters/${imageSlug}.jpg`;
+
+    return `
+    <li class="champ-card">
+        <div class="champ-image">
+            <img src="${imageUrl}" alt="${champion.imageUrl}" onerror="this.src='/images/ufc-fighter-placeholder.webp'">
+        
+        <h2 class="champ-name">${champion.name}</h2>
+        <p class="champ-rank">Rank: ${champion.rank}</p>
+    </li>`;
+}
+
+
 async function initFighterData() {
     const fighterData = await getUfcFighterData();
 }
@@ -19,7 +45,7 @@ async function initFighterInfo() {
     const fighterInfoData = await getAllFighters();
 }
 export function generateFighterUrl(apiName) {
-    const formattedName = apiName.toLowerCase().replace(" ", "-");
+    const formattedName = apiName.trim().toLowerCase().replace(/ /g, "-");
 
     return `https://fightcompanion123.blob.core.windows.net/fighters/${formattedName}.jpg`;
 }
@@ -39,7 +65,7 @@ async function searchFighter(inputName) {
     } else {
         console.log("Fighter is not in our records")
     }
-    
+
 }
 
 async function handleSearch() {
@@ -49,7 +75,7 @@ async function handleSearch() {
     const match = allFighters.find(f => {
         const fullName = `${f.FirstName} ${f.LastName}`.toLowerCase();
         return fullName === searchInput;
-        
+
     })
 
     if (match) {
@@ -58,13 +84,13 @@ async function handleSearch() {
         console.log("No match was found")
     }
 
-    
+
 }
 setClick("#searchButton", handleSearch)
 
 
 
-initRankings();
+initChampions();
 initFighterData();
 initFighterInfo();
 
